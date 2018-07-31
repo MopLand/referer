@@ -1,0 +1,146 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN" "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+<head>
+<meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+<title>Referer - 搜索引擎及关键字获取测试</title>
+<style>
+body{
+	margin:20px; padding:0; font-family:'微软雅黑'; line-height:1.2em; font-size:1em;
+}
+
+#shell{
+	width:700px; margin:20px auto;
+}
+
+#shell table{
+	background:#666;
+}
+
+#shell td{
+	padding:10px; background:#FFF;
+}
+
+p{
+	margin:1em 0; line-height:2em;
+}
+
+input{
+	padding:10px; border:#999 solid 1px; vertical-align: middle;
+}
+
+button{
+	vertical-align: middle;
+}
+</style>
+</head>
+<body>
+
+	<script type="text/javascript" src="../res/Naver.js"></script>
+	
+	<div id="shell">
+	
+		<p style="text-align:center;">
+			<script type="text/javascript"><!--
+			google_ad_client = "pub-7104481011578148";
+			/* 728x90, 创建于 11-1-10 */
+			google_ad_slot = "6989394160";
+			google_ad_width = 728;
+			google_ad_height = 90;
+			//-->
+			</script>
+			<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+		</p>
+	
+		<h2>Referer</h2>
+		<p>document.referer - 搜索引擎及关键字获取测试</p>
+	
+		<script type="text/javascript" src="js/encodeToGb2312.js"></script>
+		<script type="text/javascript" src="js/Referer.js"></script>
+	
+		<div class="content">
+	
+			<p>
+				<b>测试工具：</b>
+				<br />
+	
+				<a href="javascript:void(0);" onclick="document.getElementById('url').value = 'http://www.baidu.com/s?wd=%C5%CC%C3%D4+%CD%F8%C5%CC%CB%D1%CB%F7'; ">百度</a>
+				<a href="javascript:void(0);" onclick="document.getElementById('url').value = 'http://www.google.com.hk/search?hl=zh-CN&q=%E7%9B%98%E8%BF%B7+%E7%BD%91%E7%9B%98%E6%90%9C%E7%B4%A2'; ">Google</a>
+	
+				<input name="url" id="url" size="98" value="" />
+	
+				<button onclick="GetRef( document.getElementById('url').value );">测试</button>
+	
+			</p>
+	
+			<p>
+				<b>分析结果：</b>
+			</p>		
+	
+			<table width="100%" border="0" cellpadding="0" cellspacing="1">
+	
+			  <tr>
+				<td width="25%">搜索引擎</td>
+				<td width="25%" id="sea"></td>
+				<td width="25%">关键字</td>
+				<td width="25%" id="key"></td>
+			  </tr>
+	
+			  <tr>
+				<td width="25%">来路地址</td>
+				<td width="25%" colspan="3" id="ref"></td>
+			  </tr>
+	
+			</table>
+	
+	
+		</div>
+	
+		<script type="text/javascript">
+	
+			function GetRef( ref ){
+	
+				//实例化来路分析
+				var track = new Referer( ref );
+	
+				//来路
+				document.getElementById("ref").innerHTML = '<a href="'+track.Referer+'" target="_blank">'+track.Referer+'</a>';
+	
+				//搜索引擎
+				document.getElementById("sea").innerHTML = track.Search;
+	
+				//解码关键字
+				try{			
+					var string = unescape( decodeURIComponent( track.Keyword ) );
+				}catch(e){
+					var string = decodeFromGb2312( track.Keyword );	
+				}
+	
+				//关键字
+				document.getElementById("key").innerHTML = string;
+	
+			}
+	
+			GetRef( document.referer );
+	
+		</script>
+	
+		<p style="text-align:center;">
+			<script type="text/javascript"><!--
+			google_ad_client = "pub-7104481011578148";
+			/* 728x90, 创建于 11-1-10 */
+			google_ad_slot = "6989394160";
+			google_ad_width = 728;
+			google_ad_height = 90;
+			//-->
+			</script>
+			<script type="text/javascript" src="http://pagead2.googlesyndication.com/pagead/show_ads.js"></script>
+		</p>
+
+		<p style="display:none;">
+			<script language="javascript" type="text/javascript" src="http://js.users.51.la/960393.js"></script>
+		</p>
+	
+	</div>
+
+</body>
+</html>
